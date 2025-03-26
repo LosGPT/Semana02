@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Los GPT - Nuestro Equipo</title>
+    <style>
+        /* Estilos generales */
+        :root {
+            --primary-color: #4a6fa5;
+            --secondary-color: #166088;
+            --accent-color: #4fc3f7;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --text-color: #333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 60px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background-color: var(--light-color);
+            transform: skewY(-3deg);
+            z-index: 1;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+
+        .tagline {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+
+        /* Sección de presentación */
+        .about {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .about h2 {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 30px;
+        }
+
+        .about p {
+            max-width: 800px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+        }
+
+        /* Tarjetas de equipo */
+        .team {
+            padding: 60px 0;
+            background-color: white;
+        }
+
+        .team h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 50px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding: 0 10px;
+        }
+
+        /* Estilos para las tarjetas del equipo */
+        .member-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .member-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+
+        .member-image {
+            height: 220px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .member-card:hover .member-image {
+            height: 250px;
+        }
+
+        .member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .member-card:hover .member-image img {
+            transform: scale(1.1);
+        }
+
+        .member-info {
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .member-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+            color: var(--secondary-color);
+        }
+
+        .member-info .position {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 12px;
+            display: block;
+            font-size: 0.9rem;
+        }
+
+        .member-info p {
+            margin-bottom: 15px;
+            font-size: 0.85rem;
+        }
+
+        /* Efecto de click */
+        .member-card:active {
+            transform: translateY(-5px) scale(0.98);
+        }
+
+        /* Para hacer toda la tarjeta clickeable */
+        .member-card a {
+            position: relative;
+            z-index: 5;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .social-links a {
+            color: var(--dark-color);
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .copyright {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+                max-width: 800px;
+                margin: 0 auto;
+            }
+        }
+        /* Sección de presentación mejorada */
+        .about {
+            padding: 100px 0;
+            background-color: var(--light-color);
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.8rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent-color);
+            border-radius: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-top: 15px;
+        }
+
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .about-text {
+            max-width: 900px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: center;
+        }
+
+        .about-text p {
+            margin-bottom: 25px;
+        }
+
+        .highlight-box {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin: 40px 0;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .highlight-box h3 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            max-width: 1000px;
+            margin: 40px auto 0;
+        }
+
+        .stat-item {
+            background: white;
+            padding: 30px 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--dark-color);
+            font-weight: 500;
+        }
+
+        /* Estilos para el header con imagen local */
+        /* Estilos para header con imagen más pequeña */
+        .header-container {
+            position: relative;
+            width: 100%;
+            height: 70vh; /* Altura del contenedor */
+            min-height: 500px;
+            max-height: 800px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .header-background {
+            width: auto;  /* Cambiado de width: 80% */
+            height: 100%; /* Cambiado de height: 90% */
+            object-fit: contain; /* Cambiado de 'cover' a 'contain' */
+            object-position: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            max-width: 100%; /* Asegura que no exceda el ancho */
+        }
+
+        /* Para mantener el overlay que cubre toda el área */
+        .header-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 32, 39, 0.5);
+            z-index: 2;
+        }
+
+        /* Media queries para diferentes tamaños de pantalla */
+        @media (max-width: 768px) {
+            .header-background {
+                width: 100%; /* En móviles ocupa todo el ancho */
+                height: auto; /* Altura automática */
+            }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Efecto hover para la imagen */
+        .header-background:hover {
+            transform: translate(-50%, -50%) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Resto de tus estilos existentes para el contenido... */
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .logo-g, .logo-p, .logo-t {
+            font-size: 6rem;
+            font-weight: 800;
+            line-height: 1;
+            margin: 0 5px;
+            background: linear-gradient(to right, #4fc3f7, #ffffff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 20px rgba(79, 195, 247, 0.5);
+        }
+
+        /* ... (mantén el resto de tus estilos existentes) ... */
+
+        h1 {
+            font-size: 5.5rem;
+            margin-bottom: 15px;
+            font-weight: 800;
+            display: flex;
+            flex-direction: column;
+            line-height: 1;
+        }
+
+        .text-los {
+            font-size: 2.5rem;
+            letter-spacing: 10px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 5px;
+        }
+
+        .text-gpt {
+            background: linear-gradient(to right, #4fc3f7, #ffffff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 30px rgba(79, 195, 247, 0.5);
+            letter-spacing: 5px;
+        }
+
+        .tagline-container {
+            position: relative;
+            display: inline-block;
+            margin-top: 30px;
+        }
+
+        .tagline {
+            font-size: 1.8rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .tagline-decoration {
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 15px;
+            background: rgba(79, 195, 247, 0.3);
+            z-index: 1;
+            transform: skewY(-2deg);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+        }
+
+        .scroll-indicator span {
+            display: block;
+            width: 30px;
+            height: 50px;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 15px;
+            position: relative;
+        }
+
+        .scroll-indicator span::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            width: 6px;
+            height: 6px;
+            background: white;
+            border-radius: 50%;
+            transform: translateX(-50%);
+            animation: scrollDown 2s infinite;
+        }
+
+        @keyframes scrollDown {
+            0% {
+                opacity: 1;
+                transform: translate(-50%, 0);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translate(-50%, 15px);
+            }
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background-color: var(--light-color);
+            transform: skewY(-3deg);
+            z-index: 2;
+        }
+
+        /* Estilos para la franja superior */
+.top-banner {
+    background-color: #166088; /* Azul similar a tu paleta */
+    color: white;
+    padding: 8px 0;
+    overflow: hidden;
+    position: relative;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.marquee {
+    white-space: nowrap;
+    display: inline-block;
+    animation: scrollText 20s linear infinite;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.marquee i {
+    margin: 0 8px;
+    color: #4fc3f7; /* Color de acento */
+}
+
+.marquee span {
+    display: inline-block;
+    padding-right: 50px; /* Espacio entre repeticiones */
+}
+
+@keyframes scrollText {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Asegurar que el header no quede oculto */
+header {
+    margin-top: 0; /* Elimina cualquier margen superior existente */
+}
+
+/* Estilos para la franja de construcción */
+.construccion-banner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(22, 96, 136, 0.9); /* Azul más oscuro */
+    color: white;
+    padding: 10px 0;
+    z-index: 4; /* Encima del overlay pero debajo del contenido */
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.construccion-marquee {
+    display: flex;
+    white-space: nowrap;
+    animation: scrollBanner 15s linear infinite;
+}
+
+.construccion-marquee span {
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-right: 60px; /* Espacio entre textos */
+    display: inline-block;
+    position: relative;
+}
+
+.construccion-marquee span::after {
+    content: "•";
+    position: absolute;
+    right: -30px;
+    color: #4fc3f7; /* Color de acento */
+}
+
+@keyframes scrollBanner {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Ajuste para el header-container */
+.header-container {
+    padding-top: 40px; /* Espacio para la franja */
+}
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <!-- Franja animada añadida aquí -->
+            <div class="construccion-banner">
+                <div class="construccion-marquee">
+                    <span>Construcción de Software</span>
+                    <span>Construcción de Software</span>
+                    <span>Construcción de Software</span>
+                    <span>Construcción de Software</span>
+                    <span>Construcción de Software</span>
+                    <span>Construcción de Software</span>
+                    <span>Construcción de Software</span>
+                    <span>Construcción de Software</span> 
+                </div>
+            </div>
+            
+            <img src="unnamed.jpg" alt="Fondo Los GPT" class="header-background">
+            <div class="header-overlay"></div>
+            <div class="header-content">
+                <h1>
+                    <span class="text-los">LOS</span>
+                </h1>
+                <div class="logo-container">
+                    <span class="logo-g">G</span>
+                    <span class="logo-p">P</span>
+                    <span class="logo-t">T</span>
+                </div>
+                <div class="tagline-container">
+                    <p class="tagline">Donde la innovación encuentra su excelencia</p>
+                    <div class="tagline-decoration"></div>
+                </div>
+                <div class="scroll-indicator">
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nuestro Equipo</h2>
+                <div class="divider"></div>
+                <p class="subtitle">El talento detrás de la innovación</p>
+            </div>
+
+            <div class="about-content">
+                <div class="about-text">
+                    <p>En <strong>Los GPT</strong>, hemos reunido a un equipo excepcional de profesionales apasionados
+                        por la tecnología y comprometidos con la excelencia. Cada miembro aporta una combinación única
+                        de habilidades, experiencia y creatividad que nos permite ofrecer soluciones verdaderamente
+                        innovadoras.</p>
+
+                    <p>Nos enorgullece contar con especialistas en diversas áreas, desde desarrollo de software e
+                        inteligencia artificial hasta diseño de experiencia de usuario y análisis de datos. Esta
+                        diversidad nos permite abordar proyectos complejos desde múltiples perspectivas, garantizando
+                        resultados sobresalientes.</p>
+
+                    <div class="highlight-box">
+                        <h3>Nuestra Filosofía</h3>
+                        <p>Creemos en la colaboración interdisciplinaria, el aprendizaje continuo y la búsqueda
+                            constante de la excelencia. Nos motiva transformar ideas ambiciosas en realidades tangibles
+                            que generen un impacto positivo.</p>
+                    </div>
+
+                    <p>Lo que nos distingue es nuestra capacidad para combinar conocimiento técnico profundo con una
+                        comprensión clara de las necesidades del negocio. No solo desarrollamos tecnología, creamos
+                        soluciones que resuelven problemas reales y generan valor.</p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">01</div>
+                        <div class="stat-label">Proyecto completado</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Clientes satisfechos</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">07+</div>
+                        <div class="stat-label">Dias de experiencia</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">Especialidades clave</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="team">
+        <div class="container">
+            <h2>Conoce al Equipo</h2>
+            <div class="team-grid">
+                <!-- Miembro 1 -->
+                <div class="member-card" onclick="window.location.href='pagina-sebastian.html'">
+                    <div class="member-image">
+                        <img src="https://avatars.githubusercontent.com/u/204794296?v=4" alt="Sebastian Cortez">
+                    </div>
+                    <div class="member-info">
+                        <h3>Sebastian Cortez</h3>
+                        <span class="position">Líder de Proyecto</span>
+                        <p>Estudiante liderando equipos multidisciplinarios.</p>
+                        <div class="social-links">
+                            <a href="https://github.com/SebasCortez"><i class="fab fa-github"></i> GitHub</a>
+                            <a href="https://continental-csm.symplicity.com/profiles/sebastianrodrigo.cortezherrer"><i class="fas fa-briefcase"></i> Empleabilidad</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Miembro 2 -->
+                <div class="member-card" onclick="window.location.href='pagina-sebastian.html'">
+                    <div class="member-image">
+                        <img src="https://avatars.githubusercontent.com/u/204794583?v=4" alt="Gonzalo Córdova">
+                    </div>
+                    <div class="member-info">
+                        <h3>Gonzalo Córdova</h3>
+                        <span class="position">Desarrollador Senior</span>
+                        <p>Experto en inteligencia artificial y aprendizaje automático con múltiples publicaciones en
+                            revistas especializadas.</p>
+                        <div class="social-links">
+                            <a href="https://github.com/GONZAcord">GitHub<i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Miembro 3 -->
+                <div class="member-card" onclick="window.location.href='pagina-sebastian.html'">
+                    <div class="member-image">
+                        <img src="https://lh3.googleusercontent.com/chat_attachment/AP1Ws4vC-WggGlOrgYNzRSghKAEZ2tUB8dXu-qFGa3UVoVek36XIue-UbJvtcus0rCGt-JizlBCsdaiD00GTni73FI-TbfZJKBe25Z8JoFfkHErLcJ-irR9eQCv3yNoApd9EcZHp2c0OCqn-Q6J2844xEGCUeRrdn-Ch2FclUXITwEL5eME8_4Wl87zAuvzpyCx4MfhENEx7YkgrbnUxZUOXTgaGp4X2YkszEQtKb4x4-ME8oKWYIwl7xcc48XNFQee7AN7A3W9HAhNT8ciQqwrwd24el3IXq5Mc9MuHahkfG4q-49e3HEShn_33Y-_tynkN7bw=w1879-h965-rw"
+                            alt="Rodrigo Alejandro">
+                    </div>
+                    <div class="member-info">
+                        <h3>Rodrigo Alejandro</h3>
+                        <span class="position">Diseñador UX/UI</span>
+                        <p>Creativo especializado en experiencias de usuario e interfaces intuitivas que mejoran la
+                            interacción humano-computadora.</p>
+                        <div class="social-links">
+                            <a href="https://github.com/AlejandroContinental">GitHub<i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-dribbble"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Miembro 4 -->
+                <div class="member-card" onclick="window.location.href='pagina-sebastian.html'">
+                    <div class="member-image">
+                        <img src="https://avatars.githubusercontent.com/u/204794627?v=4" alt="Jhojan Ccoyo">
+                    </div>
+                    <div class="member-info">
+                        <h3>Jhojan Ccoyo</h3>
+                        <span class="position">Especialista en Datos</span>
+                        <p>Analista de datos con experiencia en big data y visualización de información para la toma de
+                            decisiones.</p>
+                        <div class="social-links">
+                            <a href="https://github.com/JhojanEd">GitHub<i class="fab fa-linkedin"></i></a>
+                            <a href=""><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-medium"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">LOS GPT</div>
+            <div class="footer-links">
+                <a href="#">Inicio</a>
+                <a href="https://sebascortez.github.io/prueba01/">Proyectos</a>
+                <a href="https://github.com/LosGPT">Contacto</a>
+            </div>
+            <p class="copyright">© 2025 Los GPT. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Font Awesome para iconos -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+    <script>
+        document.querySelectorAll('.member-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                // Evita que se active el click si se hace en un enlace social
+                if (!e.target.closest('a')) {
+                    // Cambia la URL por la que corresponda a cada miembro
+                    const memberName = this.querySelector('h3').textContent;
+                    let url;
+                    
+                    switch(memberName) {
+                        case 'Sebastian Cortez':
+                            url = 'pagina-sebastian.html';
+                            break;
+                        case 'Gonzalo Córdova':
+                            url = 'pagina-gonzalo.html';
+                            break;
+                        // Añade los otros casos
+                        default:
+                            url = 'equipo.html';
+                    }
+                    
+                    window.location.href = url;
+                }
+            });
+        });
+        </script>   
+</body>
+
+</html>
